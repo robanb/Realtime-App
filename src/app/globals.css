@@ -1,3 +1,11 @@
 body {
   zoom: 175%;
+  background-color: whitesmoke;
+}
+
+h1 {
+  color: #ef4444;
+  font-style: italic;
+  font-weight: bold;
+  text-align: center;
 }
