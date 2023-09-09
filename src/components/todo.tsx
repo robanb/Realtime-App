@@ -3,6 +3,7 @@
 import { Task } from "@/models/task";
 import { useState, useEffect, FormEvent } from "react";
 import { remult } from "remult";
+import { TaskController } from "./TasksController";
 
 const taskRepo = remult.repo(Task);
 export default function Todo() {
@@ -43,6 +44,9 @@ export default function Todo() {
     }
   }
 
+  async function setAllCompleted(completed: boolean) {
+    TaskController.setAllCompleted(completed);
+  }
   return (
     <div>
       <h1>Todo {tasks.length}</h1>
@@ -68,6 +72,14 @@ export default function Todo() {
             </div>
           );
         })}
+        <div>
+          <button onClick={() => setAllCompleted(true)}>
+            Set all Completed
+          </button>
+          <button onClick={() => setAllCompleted(false)}>
+            Set all Uncompleted
+          </button>
+        </div>
       </main>
     </div>
   );
