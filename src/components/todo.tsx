@@ -9,8 +9,8 @@ export default function Todo() {
   const [tasks, setTasks] = useState<Task[]>([]);
   const [newTaskTitle, setNewTaskTitle] = useState("");
   useEffect(() => {
-    taskRepo
-      .find({
+    return taskRepo
+      .liveQuery({
         orderBy: {
           createdAt: "asc",
         },
@@ -18,7 +18,7 @@ export default function Todo() {
           completed: undefined,
         },
       })
-      .then(setTasks);
+      .subscribe((info) => setTasks(info.applyChanges));
   }, []);
   async function addTask(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
